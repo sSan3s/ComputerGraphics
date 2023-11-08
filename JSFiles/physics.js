@@ -1,6 +1,9 @@
 import * as THREE from "three";
 import { gameOver, rankUpSph, killSph } from "./script.js";
 import { addGameScore } from "./UI.js";
+
+// bmw test
+
 let gravity = 0.098; // At what framerate? 120?
 const zAxis = new THREE.Vector3(0, 0, 1);
 const yAxis = new THREE.Vector3(0, 1, 0);
