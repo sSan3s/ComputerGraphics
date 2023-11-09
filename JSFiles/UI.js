@@ -7,11 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+
 import { camera, renderer, 
 // createSph,
 createColorSph, guideLine, guideSphere, renewGuideSphere, fps, config, } from './script.js';
 import { sphs, side, height, setPhysicalParameters } from './physics.js';
 import { MathUtils, Vector3, Color } from 'three';
+
 let mouseX = 0, mouseY = 0, clickX = 0, clickY = 0; // Client mouse positions
 export let container = document.getElementById('container'); // container DOM
 export let w_width = container.clientWidth;
@@ -65,7 +67,7 @@ export function onDocumentMouseMove(event) {
     vec.sub(camera.position).normalize();
     pos.copy(camera.position).add(vec.multiplyScalar((0.5 * height + dropMargin - camera.position.z) / vec.z));
     if (isInRange(pos, side + 50)) {
-        let margin = config[currentRank].radius * 0.75;
+        let margin = config[currentRank].radius * 1.03;
         if (pos.x <= -side + margin)
             pos.x = -side + margin;
         else if (pos.x >= side - margin)

@@ -122,6 +122,7 @@ export function killSph(sph) {
     scene.remove(sph.mesh);
 }
 function createBorder(side, height, scene) {
+    // floor
     let thickness = 0.5;
     let opacity = 0.15;
     let myGeo = new THREE.BoxGeometry(2 * (side + thickness), 2 * (side + thickness), thickness, 1, 1, 1);
@@ -133,6 +134,8 @@ function createBorder(side, height, scene) {
     let mesh = new THREE.Mesh(myGeo, material);
     mesh.position.set(0, 0, (-0.5 * (thickness + height)));
     scene.add(mesh);
+
+    // wall
     let distance = (side + 0.5 * thickness);
     let sideArray = [[0, distance],
         [0, -distance],
