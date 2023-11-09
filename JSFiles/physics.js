@@ -2,15 +2,14 @@ import * as THREE from "three";
 import { gameOver, rankUpSph, killSph } from "./script.js";
 import { addGameScore } from "./UI.js";
 
-// bmw test
 
-let gravity = 0.098; // At what framerate? 120?
+let gravity = 0.098; // 중력가속도 설정
 const zAxis = new THREE.Vector3(0, 0, 1);
 const yAxis = new THREE.Vector3(0, 1, 0);
 const xAxis = new THREE.Vector3(1, 0, 0);
 export let G = new THREE.Vector3(0, 0, -gravity);
 export let sphs = []; // managing all fruits
-export let side = 100;
+export let side = 120;
 export let height = 300;
 let halfHeight = height * 0.5;
 // Physical properties...

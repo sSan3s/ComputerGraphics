@@ -22,6 +22,7 @@ let windowHalfY = container.clientHeight / 2 + container.offsetTop;
 let containerWidth = container.clientWidth / 2;
 let containerHeight = container.clientHeight / 2;
 let upNextPanel = document.getElementById('upNext'); // Other UI panels DOM
+let slotPanel = document.getElementById('slotText');
 let scoreBoard = document.getElementById('scoreBoard');
 // Camera orientations and movement
 export let currentPhi = 0.25 * Math.PI + 0.001, targetPhi = 0.25 * Math.PI + 0.001;
@@ -38,9 +39,10 @@ let gameScore = 0;
 // Vectors used to map from client -> 3D world.
 let vec = new Vector3(); // recycle. normalized mouse position in camera view.
 let pos = new Vector3(); // recycle. world position under the mouse.
-// numbers for Mobile UIs
-let touchXstart = 0;
-let touchYstart = 0;
+
+export let slot=MathUtils.randInt(0,1);
+let temp;
+
 export function onWindowResize() {
     windowHalfX = container.clientWidth / 2 + container.offsetLeft;
     windowHalfY = container.clientHeight / 2 + container.offsetTop;
@@ -170,6 +172,21 @@ export function onKeydown(event) {
             targetTheta = 0.5 * Math.PI;
             targetPhi = 0;
             break;
+        case 'Z':
+            if(slot==-1){
+                slot = currentRank;
+                currentRank = nextRank;
+                nextRank = MathUtils.randInt(0, 5);
+                renewGuideSphere();
+
+            }
+            else {
+                temp = currentRank;
+                currentRank = slot;
+                slot = temp;
+                renewGuideSphere();
+
+            }
         default:
             break;
     }
@@ -220,6 +237,7 @@ export function addGameScore(num) {
 // Display socre, next fruit.
 export function display() {
     upNextPanel.innerText = config[nextRank].name; //nextRank.toString();
+    slotPanel.innerText = config[slot].name;
     upNextPanel.style.color = "#" + new Color(config[nextRank].color).getHexString();
     // upNextPanel.style.fontSize = config[nextRank].radius.toString()+"px";
     scoreBoard.innerText = gameScore.toString();
@@ -275,7 +293,7 @@ export function debugging(debTab) {
         // @ts-ignore
         Number(debTab.namedItem("wallRep").value), 
         // @ts-ignore
-        Number(debTab.namedItem("spheRep").value)); // 옘병~
+        Number(debTab.namedItem("spheRep").value));
         console.log();
     }
     catch (error) {
