@@ -158,10 +158,17 @@ export function onKeydown(event) {
             targetPhi = currentPhi + 0.25 * Math.PI;
             break;
         case 'Q':
-            targetRadi = currentRadi - 80;
+            targetRadi = currentRadi - 90;
             break;
         case 'E':
-            targetRadi = currentRadi + 80;
+            targetRadi = currentRadi + 90;
+            break;
+        case 'T': // Top View
+            targetTheta = 0;
+            break;
+        case 'B': // Bottom View
+            targetTheta = 0.5 * Math.PI;
+            targetPhi = 0;
             break;
         default:
             break;
@@ -177,64 +184,6 @@ export function onKeydown(event) {
     smoothCameraSet(targetPhi, targetTheta, targetRadi);
 }
 
-// Mobile UIs
-export function onDocumentTouchStart(ev) {
-    touchXstart = (ev.touches[0].clientX - windowHalfX + window.scrollX);
-    touchYstart = -(ev.touches[0].clientY - windowHalfY + window.scrollY);
-}
-
-export function onDocumentTouched(ev) {
-    let clientX = (ev.changedTouches[0].clientX - windowHalfX + window.scrollX);
-    let clientY = -(ev.changedTouches[0].clientY - windowHalfY + window.scrollY);
-    vec.set(clientX / containerWidth, clientY / containerHeight, 1);
-    vec.unproject(camera);
-    vec.sub(camera.position).normalize();
-    pos.copy(camera.position).add(vec.multiplyScalar((0.5 * height + dropMargin - camera.position.z) / vec.z));
-    onDocumentClick(new MouseEvent("dummy")); // reuse PC version.
-    //@ts-ignore
-    guideLine.material.opacity = 0;
-    //@ts-ignore
-    guideSphere.material.opacity = 0;
-}
-
-export function onDocumentSwipe(ev) {
-    mouseX = (ev.changedTouches[0].clientX - windowHalfX + window.scrollX);
-    mouseY = -(ev.changedTouches[0].clientY - windowHalfY + window.scrollY);
-    vec.set(mouseX / containerWidth, mouseY / containerHeight, 1);
-    vec.unproject(camera);
-    vec.sub(camera.position).normalize();
-    pos.copy(camera.position).add(vec.multiplyScalar((0.5 * height + dropMargin - camera.position.z) / vec.z));
-    if (isInRange(pos, side + 50)) {
-        let margin = config[currentRank].radius * 0.75;
-        if (pos.x <= -side + margin)
-            pos.x = -side + +margin;
-        else if (pos.x >= side - margin)
-            pos.x = side - margin;
-        if (pos.y <= -side + margin)
-            pos.y = -side + margin;
-        else if (pos.y >= side - margin)
-            pos.y = side - margin;
-        //@ts-ignore
-        guideLine.material.opacity = 0.5;
-        guideLine.position.set(pos.x, pos.y, 0);
-        guideSphere.position.set(pos.x, pos.y, 0.5 * height + dropMargin);
-        //@ts-ignore
-        guideSphere.material.opacity = 0.5;
-    }
-    else {
-        targetPhi = currentPhi + (touchXstart - mouseX) * 0.001 * Math.PI;
-        targetTheta = currentTheta + (mouseY - touchYstart) * 0.001 * Math.PI;
-        if (targetTheta > 0.5 * Math.PI)
-            targetTheta = 0.5 * Math.PI;
-        else if (targetTheta < 0)
-            targetTheta = 0;
-        setCameraStatus(targetPhi, targetTheta, targetRadi);
-        touchXstart = mouseX;
-        touchYstart = mouseY;
-        currentPhi = targetPhi;
-        currentTheta = targetTheta;
-    }
-}
 function isInRange(pos, side) {
     return (pos.x < side) && (pos.x > -side) && (pos.y < side) && (pos.y > -side);
 }

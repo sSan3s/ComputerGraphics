@@ -128,7 +128,7 @@ export function killSph(sph) {
     scene.remove(sph.mesh);
 }
 function createBorder(side, height, scene) {
-    let thickness = 10;
+    let thickness = 0.5;
     let opacity = 0.15;
     let myGeo = new THREE.BoxGeometry(2 * (side + thickness), 2 * (side + thickness), thickness, 1, 1, 1);
     let material = new THREE.MeshBasicMaterial({
