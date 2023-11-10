@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { camera, renderer, 
 // createSph,
-createColorSph, guideLine, guideSphere, renewGuideSphere, fps, config, } from './script.js';
+createColorSph, guideLine, guideSphere,guideHeight, renewGuideSphere, fps, config, } from './script.js';
 import { sphs, side, height, setPhysicalParameters } from './physics.js';
 import { MathUtils, Vector3, Color } from 'three';
 let mouseX = 0, mouseY = 0, clickX = 0, clickY = 0; // Client mouse positions
@@ -22,6 +22,7 @@ let windowHalfY = container.clientHeight / 2 + container.offsetTop;
 let containerWidth = container.clientWidth / 2;
 let containerHeight = container.clientHeight / 2;
 let upNextPanel = document.getElementById('upNext'); // Other UI panels DOM
+let slotPanel = document.getElementById('slotText');
 let scoreBoard = document.getElementById('scoreBoard');
 // Camera orientations and movement
 export let currentPhi = 0.25 * Math.PI + 0.001, targetPhi = 0.25 * Math.PI + 0.001;
@@ -38,9 +39,10 @@ let gameScore = 0;
 // Vectors used to map from client -> 3D world.
 let vec = new Vector3(); // recycle. normalized mouse position in camera view.
 let pos = new Vector3(); // recycle. world position under the mouse.
-// numbers for Mobile UIs
-let touchXstart = 0;
-let touchYstart = 0;
+
+export let slot=MathUtils.randInt(0,1);
+let temp;
+
 export function onWindowResize() {
     windowHalfX = container.clientWidth / 2 + container.offsetLeft;
     windowHalfY = container.clientHeight / 2 + container.offsetTop;
@@ -158,11 +160,33 @@ export function onKeydown(event) {
             targetPhi = currentPhi + 0.25 * Math.PI;
             break;
         case 'Q':
-            targetRadi = currentRadi - 80;
+            targetRadi = currentRadi - 90;
             break;
         case 'E':
-            targetRadi = currentRadi + 80;
+            targetRadi = currentRadi + 90;
             break;
+        case 'T': // Top View
+            targetTheta = 0;
+            break;
+        case 'B': // Bottom View
+            targetTheta = 0.5 * Math.PI;
+            targetPhi = 0;
+            break;
+        case 'Z':
+            if(slot==-1){
+                slot = currentRank;
+                currentRank = nextRank;
+                nextRank = MathUtils.randInt(0, 5);
+                renewGuideSphere();
+
+            }
+            else {
+                temp = currentRank;
+                currentRank = slot;
+                slot = temp;
+                renewGuideSphere();
+
+            }
         default:
             break;
     }
@@ -177,64 +201,6 @@ export function onKeydown(event) {
     smoothCameraSet(targetPhi, targetTheta, targetRadi);
 }
 
-// Mobile UIs
-export function onDocumentTouchStart(ev) {
-    touchXstart = (ev.touches[0].clientX - windowHalfX + window.scrollX);
-    touchYstart = -(ev.touches[0].clientY - windowHalfY + window.scrollY);
-}
-
-export function onDocumentTouched(ev) {
-    let clientX = (ev.changedTouches[0].clientX - windowHalfX + window.scrollX);
-    let clientY = -(ev.changedTouches[0].clientY - windowHalfY + window.scrollY);
-    vec.set(clientX / containerWidth, clientY / containerHeight, 1);
-    vec.unproject(camera);
-    vec.sub(camera.position).normalize();
-    pos.copy(camera.position).add(vec.multiplyScalar((0.5 * height + dropMargin - camera.position.z) / vec.z));
-    onDocumentClick(new MouseEvent("dummy")); // reuse PC version.
-    //@ts-ignore
-    guideLine.material.opacity = 0;
-    //@ts-ignore
-    guideSphere.material.opacity = 0;
-}
-
-export function onDocumentSwipe(ev) {
-    mouseX = (ev.changedTouches[0].clientX - windowHalfX + window.scrollX);
-    mouseY = -(ev.changedTouches[0].clientY - windowHalfY + window.scrollY);
-    vec.set(mouseX / containerWidth, mouseY / containerHeight, 1);
-    vec.unproject(camera);
-    vec.sub(camera.position).normalize();
-    pos.copy(camera.position).add(vec.multiplyScalar((0.5 * height + dropMargin - camera.position.z) / vec.z));
-    if (isInRange(pos, side + 50)) {
-        let margin = config[currentRank].radius * 0.75;
-        if (pos.x <= -side + margin)
-            pos.x = -side + +margin;
-        else if (pos.x >= side - margin)
-            pos.x = side - margin;
-        if (pos.y <= -side + margin)
-            pos.y = -side + margin;
-        else if (pos.y >= side - margin)
-            pos.y = side - margin;
-        //@ts-ignore
-        guideLine.material.opacity = 0.5;
-        guideLine.position.set(pos.x, pos.y, 0);
-        guideSphere.position.set(pos.x, pos.y, 0.5 * height + dropMargin);
-        //@ts-ignore
-        guideSphere.material.opacity = 0.5;
-    }
-    else {
-        targetPhi = currentPhi + (touchXstart - mouseX) * 0.001 * Math.PI;
-        targetTheta = currentTheta + (mouseY - touchYstart) * 0.001 * Math.PI;
-        if (targetTheta > 0.5 * Math.PI)
-            targetTheta = 0.5 * Math.PI;
-        else if (targetTheta < 0)
-            targetTheta = 0;
-        setCameraStatus(targetPhi, targetTheta, targetRadi);
-        touchXstart = mouseX;
-        touchYstart = mouseY;
-        currentPhi = targetPhi;
-        currentTheta = targetTheta;
-    }
-}
 function isInRange(pos, side) {
     return (pos.x < side) && (pos.x > -side) && (pos.y < side) && (pos.y > -side);
 }
@@ -271,6 +237,7 @@ export function addGameScore(num) {
 // Display socre, next fruit.
 export function display() {
     upNextPanel.innerText = config[nextRank].name; //nextRank.toString();
+    slotPanel.innerText = config[slot].name;
     upNextPanel.style.color = "#" + new Color(config[nextRank].color).getHexString();
     // upNextPanel.style.fontSize = config[nextRank].radius.toString()+"px";
     scoreBoard.innerText = gameScore.toString();
@@ -326,7 +293,7 @@ export function debugging(debTab) {
         // @ts-ignore
         Number(debTab.namedItem("wallRep").value), 
         // @ts-ignore
-        Number(debTab.namedItem("spheRep").value)); // 옘병~
+        Number(debTab.namedItem("spheRep").value));
         console.log();
     }
     catch (error) {

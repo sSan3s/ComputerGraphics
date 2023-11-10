@@ -1,16 +1,15 @@
 import * as THREE from "three";
-import { gameOver, rankUpSph, killSph } from "./script.js";
+import { gameOver, rankUpSph, killSph, guideHeight } from "./script.js";
 import { addGameScore } from "./UI.js";
 
-// bmw test
 
-let gravity = 0.098; // At what framerate? 120?
+let gravity = 0.098; // 중력가속도 설정
 const zAxis = new THREE.Vector3(0, 0, 1);
 const yAxis = new THREE.Vector3(0, 1, 0);
 const xAxis = new THREE.Vector3(1, 0, 0);
 export let G = new THREE.Vector3(0, 0, -gravity);
 export let sphs = []; // managing all fruits
-export let side = 100;
+export let side = 120;
 export let height = 300;
 let halfHeight = height * 0.5;
 // Physical properties...
@@ -23,6 +22,7 @@ let wallOverwrapCoeff = 0.1;
 let overwrapRepulsion = 0.6; // = sphere repulsion
 let wallSpinFriction = 1.5;
 let tmp = new THREE.Vector3();
+let topZ = -height/2;
 export class Physical {
     constructor(mesh, vel, rank, radius) {
         this.mesh = mesh;
@@ -258,8 +258,10 @@ export function physics(elements) {
             if (i === j)
                 continue;
             elements[i].checkCollisionWith(elements[j]);
+
         }
         // After all are done move to next position.
+        
         elements[i].nextPosition(); // and also accelerate.
     }
     // Remove sphes & game over check
@@ -269,10 +271,26 @@ export function physics(elements) {
             if (elements[i].isReservedToDestroyed) {
                 elements = elements.splice(i, 1);
             }
+            
+           
         }
         catch (e) {
             break;
         }
     }
+    topZ=-height/2;
+    for (let h = 0;h<elements.length;h++){
+        if(elements[h].mesh.position.z+elements[h].radius>topZ){
+            topZ=elements[h].mesh.position.z+elements[h].radius;
+        }
+    }
+    if(topZ!=-height/2){
+        guideHeight.material.opacity = 0.2;
+    }
+    else{
+        guideHeight.material.opacity = 0.0;
+    }
+    guideHeight.position.set(0,0,topZ);
+
 }
 //# sourceMappingURL=physics.js.map
