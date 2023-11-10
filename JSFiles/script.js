@@ -38,7 +38,7 @@ function init() {
     UI.smoothCameraSet(UI.currentPhi, UI.currentTheta, UI.currentRadi);
     // Initialize three.js scene.
     scene = new THREE.Scene();
-    scene.background = new THREE.Color("coral");
+    scene.background = new THREE.Color("#FFCFC4");
     // Add lights to the scene
     // const light = new THREE.AmbientLight(0xffffff, 0.5);
     const light = new THREE.DirectionalLight(0xffffff, 0.8);

@@ -209,7 +209,7 @@ function setCameraStatus(Phi, Theta, Radi) {
     let xyProjection = Radi * Math.sin(Theta);
     let zAxis = new Vector3(0, 0, 1);
     let yAxis = new Vector3(0, 1, 0);
-    camera.rotation.set(0, Theta, 0.5 * Math.PI); // 😢
+    camera.rotation.set(0, Theta, 0.5 * Math.PI); 
     camera.rotateOnWorldAxis(zAxis, Phi);
     camera.position.set(xyProjection * Math.cos(Phi), xyProjection * Math.sin(Phi), Radi * Math.cos(Theta));
 }
@@ -234,6 +234,52 @@ export function smoothCameraSet(Phi, Theta, Radi) {
 export function addGameScore(num) {
     gameScore += num;
 }
+
+const iconContainer = document.querySelector('.upNextIcon');
+var icon = document.createElement("img");
+icon.width = 100;
+icon.height = 100;
+iconContainer.appendChild(icon);
+
+const slotIconContainer = document.querySelector('.slotIcon');
+var slotIcon = document.createElement("img");
+slotIcon.width = 100;
+slotIcon.height = 100;
+slotIconContainer.appendChild(slotIcon);
+
+export function upNextIconDisplayer(fruitName, icon) {
+
+    console.log("fruitname:", fruitName);
+    switch(fruitName) {
+        case 'cherry':
+            icon.src = './assets/cherry.png';
+            console.log("nextFruit: cherry");
+            break;
+        case 'strawberry':
+            icon.src = './assets/strawberry.png';
+            console.log("nextFruit: strawberry");
+            break;
+        case 'grape':
+            icon.src = './assets/grapes.png';
+            console.log("nextFruit: grape");
+            break;
+        case 'mandarin':
+            icon.src = './assets/clementine.png';
+            console.log("nextFruit: mandarin");
+            break;
+        case 'persimmon':
+            icon.src = './assets/persimmon.png';
+            console.log("nextFruit: persimmon");
+            break;
+        case 'apple':
+            icon.src = './assets/red-apple.png';
+            console.log("nextFruit: apple");
+            break;
+    }
+    
+}
+
+
 // Display socre, next fruit.
 export function display() {
     upNextPanel.innerText = config[nextRank].name; //nextRank.toString();
@@ -241,6 +287,8 @@ export function display() {
     upNextPanel.style.color = "#" + new Color(config[nextRank].color).getHexString();
     // upNextPanel.style.fontSize = config[nextRank].radius.toString()+"px";
     scoreBoard.innerText = gameScore.toString();
+    upNextIconDisplayer(config[nextRank].name.toString(), icon);
+    upNextIconDisplayer(config[slot].name.toString(), slotIcon);
 }
 /**
  *
