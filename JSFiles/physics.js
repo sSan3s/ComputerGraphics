@@ -280,7 +280,7 @@ export function physics(elements) {
     }
     topZ=-height/2;
     for (let h = 0;h<elements.length;h++){
-        if(elements[h].mesh.position.z>topZ){
+        if(elements[h].mesh.position.z+elements[h].radius>topZ){
             topZ=elements[h].mesh.position.z+elements[h].radius;
         }
     }
