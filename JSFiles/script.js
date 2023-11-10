@@ -18,9 +18,9 @@ export let renderer;
 export let fps = 0;
 let then;
 let now;
-// guideLine mesh, Maybe it sould be moved to UI.ts?
 export let guideLine;
 export let guideSphere;
+export let guideHeight;
 let debTab = document.getElementsByClassName("debTab");
 export let config;
 let loadedTextures = [];
@@ -53,6 +53,7 @@ function init() {
     // Add guideLine to the scene
     createGuide();
     createGuideSph();
+    createGuideHeight();
     // Initialize renderer
     renderer = new THREE.WebGLRenderer({ antialias: true, precision: "highp" });
     UI.onWindowResize(); // Let UI.ts do that.
@@ -168,6 +169,15 @@ function createGuide() {
     guideLine.position.set(0, 0, 0);
     guideLine.rotateX(Math.PI * 0.5);
     scene.add(guideLine);
+    // Note that it is not considered as physcial object.
+}
+function createGuideHeight() {
+    let myGeo = new THREE.PlaneGeometry(PHYS.side*2,PHYS.side*2)
+    let myMaterial = new THREE.MeshBasicMaterial({ opacity: 0.2, transparent: true, depthWrite:false, color: "gray"});
+    guideHeight = new THREE.Mesh(myGeo, myMaterial);
+    scene.add(guideHeight);
+    guideHeight.position.set(0,0,0);
+
     // Note that it is not considered as physcial object.
 }
 function createGuideSph() {

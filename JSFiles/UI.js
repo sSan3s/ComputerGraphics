@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { camera, renderer, 
 // createSph,
-createColorSph, guideLine, guideSphere, renewGuideSphere, fps, config, } from './script.js';
+createColorSph, guideLine, guideSphere,guideHeight, renewGuideSphere, fps, config, } from './script.js';
 import { sphs, side, height, setPhysicalParameters } from './physics.js';
 import { MathUtils, Vector3, Color } from 'three';
 let mouseX = 0, mouseY = 0, clickX = 0, clickY = 0; // Client mouse positions
