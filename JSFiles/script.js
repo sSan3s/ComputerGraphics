@@ -23,6 +23,7 @@ export let guideSphere;
 export let guideHeight;
 let debTab = document.getElementsByClassName("debTab");
 export let config;
+export let gameStatus = true;
 let loadedTextures = [];
 // to get mode selection.
 let url = new URL(window.location.href);
@@ -34,8 +35,9 @@ function init() {
     var _a;
     let container = UI.container;
     // camera = new THREE.OrthographicCamera();
-    camera = new THREE.PerspectiveCamera(24, UI.w_width / UI.w_height, 1, 10000);
+    camera = new THREE.PerspectiveCamera(18, UI.w_width / UI.w_height, 1, 10000);
     UI.smoothCameraSet(UI.currentPhi, UI.currentTheta, UI.currentRadi);
+    camera.rotation
     // Initialize three.js scene.
     scene = new THREE.Scene();
     scene.background = new THREE.Color("#FFCFC4");
@@ -50,6 +52,7 @@ function init() {
     // scene.add(rectLight);
     // Add fruit box (boundary) to the scene
     let border = createBorder(PHYS.side, PHYS.height, scene);
+
     // Add guideLine to the scene
     createGuide();
     createGuideSph();
@@ -60,7 +63,8 @@ function init() {
     // Add canvas DOM
     container.appendChild(renderer.domElement);
     // Add input listeners
-    
+    var high = document.cookie.split(`; `).map((el) => el.split('='));
+    UI.highscore.innerText = high[0][1]
     document.addEventListener('mousemove', UI.onDocumentMouseMove);
     document.addEventListener('mouseup', UI.onDocumentMouseUp);
     document.addEventListener('mousedown', UI.onDocumentClick);
@@ -68,6 +72,7 @@ function init() {
     
     window.addEventListener('resize', UI.onWindowResize);
     // Debug UI
+
     (_a = document.getElementById("camPos")) === null || _a === void 0 ? void 0 : _a.addEventListener('input', UI.onCamDebugChanged);
 }
 export function createColorSph(rank, position, rotation) {
@@ -124,7 +129,7 @@ export function killSph(sph) {
 }
 function createBorder(side, height, scene) {
     let thickness = 0.5;
-    let opacity = 0.15;
+    let opacity = 0.25;
     let myGeo = new THREE.BoxGeometry(2 * (side + thickness), 2 * (side + thickness), thickness, 1, 1, 1);
     let material = new THREE.MeshBasicMaterial({
         opacity: opacity,
@@ -153,7 +158,7 @@ function createBorder(side, height, scene) {
             opacity: opacity,
             transparent: true,
             depthWrite: false,
-            color: new THREE.Color("white")
+            color: new THREE.Color("orange")
         });
         let mesh1 = new THREE.Mesh(myGeo1, material1);
         mesh1.rotateOnWorldAxis(rotaionArray[i], 0.5 * Math.PI);
@@ -228,14 +233,7 @@ function render() {
 }
 // Game over execution.
 export function gameOver() {
-    PHYS.sphs.splice(0, PHYS.sphs.length);
-    document.removeEventListener('touchstart', UI.onDocumentTouchStart);
-    document.removeEventListener('touchend', UI.onDocumentTouched);
-    document.removeEventListener('mousemove', UI.onDocumentMouseMove);
-    document.removeEventListener('click', UI.onDocumentClick);
-    scene.remove(guideLine);
-    scene.remove(guideSphere);
-    alert("game over.");
+    location.reload();
 }
 // loading config json.
 function loadConfig(mode) {

@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { gameOver, rankUpSph, killSph, guideHeight } from "./script.js";
+import { gameOver, rankUpSph, killSph, guideHeight,gameStatus } from "./script.js";
 import { addGameScore } from "./UI.js";
 
 
@@ -12,6 +12,7 @@ export let G = new THREE.Vector3(0, 0, -gravity); //중력
 export let sphs = []; // 생성한 과일 저장
 export let side = 100;
 export let height = 300;
+export let topZ;
 let halfHeight = height * 0.5;
 // 벽, 바닥, 과일끼리의 충돌과 탄성, 반발력, 마찰계수
 let floorElasticity = 0.5;
