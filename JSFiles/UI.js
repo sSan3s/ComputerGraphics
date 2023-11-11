@@ -121,7 +121,7 @@ export function onDocumentClick(event) {
         return;
     if (Math.abs(clickY) > (side + 50))
         return;
-    let margin = config[currentRank].radius * 0.75;
+    let margin = config[currentRank].radius * 1.03;
     if (clickX <= -side + margin)
         clickX = -side + margin;
     else if (clickX >= side - margin)
