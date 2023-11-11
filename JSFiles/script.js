@@ -236,6 +236,7 @@ export function gameOver() {
     scene.remove(guideLine);
     scene.remove(guideSphere);
     alert("game over.");
+    location.reload();
 }
 // loading config json.
 function loadConfig(mode) {
