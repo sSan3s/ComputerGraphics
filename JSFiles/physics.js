@@ -4,7 +4,7 @@ import { addGameScore } from "./UI.js";
 
 
 
-let gravity = 0.98; // 게임이 진행되는 공간(box), 중력이 적용되는 범위 및 중력계수 초기화
+let gravity = 0.49; // 게임이 진행되는 공간(box), 중력이 적용되는 범위 및 중력계수 초기화
 const zAxis = new THREE.Vector3(0, 0, 1);
 const yAxis = new THREE.Vector3(0, 1, 0);
 const xAxis = new THREE.Vector3(1, 0, 0);

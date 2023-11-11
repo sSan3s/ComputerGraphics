@@ -5,6 +5,7 @@
 }
 html, body {
   overflow: hidden;
+  background-color: rgb(255, 107, 38);
 }
 body {
   position: relative;
@@ -18,7 +19,7 @@ a:visited {
   text-decoration: none;
 }
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 107, 38);
 }
 td {
   border: 1px solid gray;
@@ -26,15 +27,15 @@ td {
 #outer {
   display: flex;
   flex-direction: column;
-  width: 85vw;
-  height: 85vh;
+  width: 60vw;
+  height: 90vh;
   margin:auto;
+  margin-top: 2vw;
 }
 #bodyContainer {
   flex-direction: row;
   display: flex;
   flex: 90%;
-  background-color: aqua;
   min-width: 0;
   min-height: 0;
 }
@@ -46,15 +47,49 @@ td {
     min-width: 0;
     min-height: 0;
   }
-}    
+}
+#leftPanel {
+  flex:0.5;
+  flex-direction: column;
+  display: flex;
+  margin-right: 0.5vw;
+}
+#slotDiv {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 100px;
+}
+#slotImgDiv {
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 15%;
+}
+#slotText {
+  font-size: large;
+  font-size: 1vw;
+  text-align: center;
+  padding-bottom: 50px;
+  font-size: 15px;
+}
+#infoDiv {
+  flex: 2;
+  margin-bottom: 0.5vw;
+  padding: 15px;
+  border-top-left-radius: 20px;
+}
 #container {
-  flex: 69%;
-  border: 1px solid orange;
+  flex: 2;
   min-width: 0;
   min-height: 0;
+  border-top-left-radius: 30px;
 }
 #subPanel {
-  flex: 29%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -69,49 +104,33 @@ td {
     min-height: 0;
   }
 }
-#upNextDiv, #infoDiv {
+#upNextDiv, #scoreDiv, #infoDiv, #slotDiv {
   display: flex;
   flex-direction: column;
-  flex: 49%;
-  border: 1px solid orange;
   text-align: center;
-  background-color: rgb(255, 178, 149);
+  background-color: white;
   min-width: 0;
   min-height: 0;
 }
 #upNextDiv {
-  flex: 20%;
+  flex: 2;
+  margin-left: 0.5vw;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-top-right-radius: 120px;
 }
 #upNext {
   font-size: large;
   font-size: 3vw;
   margin: auto;
 }
-#slotDiv {
-  width: 8vw;
-  height: 10vw;
-  position: absolute;
-  margin: 1vw;
-  background-color: bisque;
-  align-items: center;
-  justify-content: center;
-}
-#slotImgDiv {
-  width: 100px;
-  height: 100px;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  margin-top: 10%;
-}
-#slotText {
-  font-size: large;
-  font-size: 1vw;
-  text-align: center;
-}
-#infoDiv > * {
+
+#scoreDiv {
+  flex: 3;
   overflow-y: hidden;
-  margin: auto;
+  margin-left: 0.5vw;
+  margin-top: 0.5vw;
+  border-bottom-left-radius: 100px;
 }
 .instruction {
   font-size: 120%;

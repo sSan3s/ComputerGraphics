@@ -122,7 +122,7 @@ export function onDocumentClick(event) {
         return;
     if (Math.abs(clickY) > (side + 50))
         return;
-    let margin = config[currentRank].radius * 0.75;
+    let margin = config[currentRank].radius * 1.03;
     if (clickX <= -side + margin)
         clickX = -side + margin;
     else if (clickX >= side - margin)
@@ -246,14 +246,14 @@ export function addGameScore(num) {
 
 const iconContainer = document.querySelector('.upNextIcon');
 var icon = document.createElement("img");
-icon.width = 100;
-icon.height = 100;
+icon.width = 140;
+icon.height = 140;
 iconContainer.appendChild(icon);
 
 const slotIconContainer = document.querySelector('.slotIcon');
 var slotIcon = document.createElement("img");
-slotIcon.width = 100;
-slotIcon.height = 100;
+slotIcon.width = 80;
+slotIcon.height = 80;
 slotIconContainer.appendChild(slotIcon);
 
 export function upNextIconDisplayer(fruitName, icon) {
