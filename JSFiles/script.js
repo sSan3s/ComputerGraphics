@@ -248,12 +248,6 @@ function loadConfig(mode) {
                     loadedTextures.push(new THREE.TextureLoader().load('textures/' + "DEFAULT/" + config[i].texture + '.png'));
                 }
             }
-            else if (mode === "BLUEARCHIVE") {
-                config = body.BLUEARCHIVE;
-                for (let i = 0; i < config.length; i++) {
-                    loadedTextures.push(new THREE.TextureLoader().load("textures/BLUEARCHIVE/" + config[i].texture + '.png'));
-                }
-            }
             else {
                 config = body.DEFAULT;
                 for (let i = 0; i < config.length; i++) {
