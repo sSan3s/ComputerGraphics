@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { gameOver, rankUpSph, killSph, guideHeight } from "./script.js";
+import { gameOver, rankUpSph, killSph, guideHeight,gameStatus } from "./script.js";
 import { addGameScore } from "./UI.js";
 
 

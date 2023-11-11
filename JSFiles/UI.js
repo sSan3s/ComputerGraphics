@@ -23,10 +23,11 @@ let containerWidth = container.clientWidth / 2;
 let containerHeight = container.clientHeight / 2;
 let upNextPanel = document.getElementById('upNext'); // Other UI panels DOM
 let slotPanel = document.getElementById('slotText');
+export let highscore = document.getElementById('highScore');
 let scoreBoard = document.getElementById('scoreBoard');
 // Camera orientations and movement
-export let currentPhi = 0.25 * Math.PI + 0.001, targetPhi = 0.25 * Math.PI + 0.001;
-export let currentTheta = 0.25 * Math.PI, targetTheta = 0.25 * Math.PI;
+export let currentPhi = 0.5 * Math.PI + 0.001, targetPhi = 0.5 * Math.PI + 0.001;
+export let currentTheta = 0.5 * Math.PI , targetTheta = 0.5 * Math.PI;
 export let currentRadi = 900 * 1.5, targetRadi = 900 * 1.5;
 let transitionTime = 300;
 let noKeyInput = false;
@@ -35,7 +36,7 @@ let isButtonDown = false;
 export let currentRank = MathUtils.randInt(0, 5);
 let nextRank = MathUtils.randInt(0, 5);
 let dropMargin = 48;
-let gameScore = 0;
+export let gameScore = 0;
 // Vectors used to map from client -> 3D world.
 let vec = new Vector3(); // recycle. normalized mouse position in camera view.
 let pos = new Vector3(); // recycle. world position under the mouse.
@@ -65,7 +66,7 @@ export function onDocumentMouseMove(event) {
     vec.sub(camera.position).normalize();
     pos.copy(camera.position).add(vec.multiplyScalar((0.5 * height + dropMargin - camera.position.z) / vec.z));
     if (isInRange(pos, side + 50)) {
-        let margin = config[currentRank].radius * 0.75;
+        let margin = config[currentRank].radius * 1.03;
         if (pos.x <= -side + margin)
             pos.x = -side + margin;
         else if (pos.x >= side - margin)
@@ -86,20 +87,20 @@ export function onDocumentMouseMove(event) {
         guideLine.material.opacity = 0;
         //@ts-ignore
         guideSphere.material.opacity = 0;
-        // CameraSetting
-        if (isButtonDown) {
-            targetPhi = currentPhi + (mouseX - mouseMoveX) * 0.001 * Math.PI;
-            targetTheta = currentTheta + (mouseMoveY - mouseY) * 0.001 * Math.PI;
-            if (targetTheta > 0.5 * Math.PI)
-                targetTheta = 0.5 * Math.PI;
-            else if (targetTheta < 0)
-                targetTheta = 0;
-            setCameraStatus(targetPhi, targetTheta, targetRadi);
-            mouseX = mouseMoveX;
-            mouseY = mouseMoveY;
-            currentPhi = targetPhi;
-            currentTheta = targetTheta;
-        }
+        // // CameraSetting
+        // if (isButtonDown) {
+        //     targetPhi = currentPhi + (mouseX - mouseMoveX) * 0.001 * Math.PI;
+        //     targetTheta = currentTheta + (mouseMoveY - mouseY) * 0.001 * Math.PI;
+        //     if (targetTheta > 0.5 * Math.PI)
+        //         targetTheta = 0.5 * Math.PI;
+        //     else if (targetTheta < 0)
+        //         targetTheta = 0;
+        //     setCameraStatus(targetPhi, targetTheta, targetRadi);
+        //     mouseX = mouseMoveX;
+        //     mouseY = mouseMoveY;
+        //     currentPhi = targetPhi;
+        //     currentTheta = targetTheta;
+        // }
     }
 }
 export function onDocumentClick(event) {
@@ -135,6 +136,9 @@ export function onDocumentClick(event) {
     nextRank = MathUtils.randInt(0, 5);
     // // renew guide sphere.
     renewGuideSphere();
+    var date = new Date();
+    date.setMinutes(date.getMinutes()+60);
+    document.cookie = `score=${gameScore}; expires=${date.toUTCString()}`;            
 }
 export function onDocumentMouseUp(event) {
     console.log("up");
@@ -170,7 +174,6 @@ export function onKeydown(event) {
             break;
         case 'B': // Bottom View
             targetTheta = 0.5 * Math.PI;
-            targetPhi = 0;
             break;
         case 'Z':
             if(slot==-1){
@@ -184,9 +187,15 @@ export function onKeydown(event) {
                 temp = currentRank;
                 currentRank = slot;
                 slot = temp;
-                renewGuideSphere();
+                renewGuideSphere();c
 
             }
+            break;
+        case 'C':
+            var date = new Date();
+            date.setMinutes(date.getMinutes()+60);
+            document.cookie = `score=${gameScore}; expires=${date.toUTCString()}`;            
+            break;
         default:
             break;
     }
