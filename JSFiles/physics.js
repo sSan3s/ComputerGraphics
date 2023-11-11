@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import { gameOver, rankUpSph, killSph } from "./script.js";
+import { gameOver, rankUpSph, killSph, guideHeight } from "./script.js";
 import { addGameScore } from "./UI.js";
 
-// bmw test
+
 
 let gravity = 0.98; // 게임이 진행되는 공간(box), 중력이 적용되는 범위 및 중력계수 초기화
 const zAxis = new THREE.Vector3(0, 0, 1);
@@ -261,6 +261,7 @@ export function physics(elements) {
             //다른 과일과의 충돌 여부 체크 함수
         }
         // After all are done move to next position.
+        
         elements[i].nextPosition(); // and also accelerate.
     }
     // Remove sphes & game over check
@@ -271,10 +272,26 @@ export function physics(elements) {
             if (elements[i].isReservedToDestroyed) {
                 elements = elements.splice(i, 1);
             }
+            
+           
         }
         catch (e) {
             break;
         }
     }
+    topZ=-height/2;
+    for (let h = 0;h<elements.length;h++){
+        if(elements[h].mesh.position.z+elements[h].radius>topZ){
+            topZ=elements[h].mesh.position.z+elements[h].radius;
+        }
+    }
+    if(topZ!=-height/2){
+        guideHeight.material.opacity = 0.2;
+    }
+    else{
+        guideHeight.material.opacity = 0.0;
+    }
+    guideHeight.position.set(0,0,topZ);
+
 }
 //# sourceMappingURL=physics.js.map

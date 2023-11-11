@@ -18,9 +18,9 @@ export let renderer;
 export let fps = 0;
 let then;
 let now;
-// guideLine mesh, Maybe it sould be moved to UI.ts?
 export let guideLine;
 export let guideSphere;
+export let guideHeight;
 let debTab = document.getElementsByClassName("debTab");
 export let config;
 let loadedTextures = [];
@@ -34,11 +34,11 @@ function init() {
     var _a;
     let container = UI.container;
     // camera = new THREE.OrthographicCamera();
-    camera = new THREE.PerspectiveCamera(20, UI.w_width / UI.w_height, 1, 10000);
+    camera = new THREE.PerspectiveCamera(24, UI.w_width / UI.w_height, 1, 10000);
     UI.smoothCameraSet(UI.currentPhi, UI.currentTheta, UI.currentRadi);
     // Initialize three.js scene.
     scene = new THREE.Scene();
-    scene.background = new THREE.Color("skyblue");
+    scene.background = new THREE.Color("#FFCFC4");
     // Add lights to the scene
     // const light = new THREE.AmbientLight(0xffffff, 0.5);
     const light = new THREE.DirectionalLight(0xffffff, 0.8);
@@ -53,24 +53,19 @@ function init() {
     // Add guideLine to the scene
     createGuide();
     createGuideSph();
+    createGuideHeight();
     // Initialize renderer
     renderer = new THREE.WebGLRenderer({ antialias: true, precision: "highp" });
     UI.onWindowResize(); // Let UI.ts do that.
     // Add canvas DOM
     container.appendChild(renderer.domElement);
     // Add input listeners
-    let isMobile = detectMobileDevice(window.navigator.userAgent);
-    if (isMobile) {
-        document.addEventListener('touchstart', UI.onDocumentTouchStart);
-        document.addEventListener('touchmove', UI.onDocumentSwipe);
-        document.addEventListener('touchend', UI.onDocumentTouched);
-    }
-    else {
-        document.addEventListener('mousemove', UI.onDocumentMouseMove);
-        document.addEventListener('mouseup', UI.onDocumentMouseUp);
-        document.addEventListener('mousedown', UI.onDocumentClick);
-        window.addEventListener('keydown', UI.onKeydown);
-    }
+    
+    document.addEventListener('mousemove', UI.onDocumentMouseMove);
+    document.addEventListener('mouseup', UI.onDocumentMouseUp);
+    document.addEventListener('mousedown', UI.onDocumentClick);
+    window.addEventListener('keydown', UI.onKeydown);
+    
     window.addEventListener('resize', UI.onWindowResize);
     // Debug UI
     (_a = document.getElementById("camPos")) === null || _a === void 0 ? void 0 : _a.addEventListener('input', UI.onCamDebugChanged);
@@ -128,7 +123,7 @@ export function killSph(sph) {
     scene.remove(sph.mesh);
 }
 function createBorder(side, height, scene) {
-    let thickness = 10;
+    let thickness = 0.5;
     let opacity = 0.15;
     let myGeo = new THREE.BoxGeometry(2 * (side + thickness), 2 * (side + thickness), thickness, 1, 1, 1);
     let material = new THREE.MeshBasicMaterial({
@@ -169,11 +164,20 @@ function createBorder(side, height, scene) {
 }
 function createGuide() {
     let myGeo = new THREE.CylinderGeometry(1, 1, PHYS.height, 5, 1, true);
-    let myMaterial = new THREE.MeshBasicMaterial({ opacity: 0.3, transparent: true, color: "white" });
+    let myMaterial = new THREE.MeshBasicMaterial({ opacity: 0.3, transparent: true, color: "white"});
     guideLine = new THREE.Mesh(myGeo, myMaterial);
     guideLine.position.set(0, 0, 0);
     guideLine.rotateX(Math.PI * 0.5);
     scene.add(guideLine);
+    // Note that it is not considered as physcial object.
+}
+function createGuideHeight() {
+    let myGeo = new THREE.PlaneGeometry(PHYS.side*2,PHYS.side*2)
+    let myMaterial = new THREE.MeshBasicMaterial({ opacity: 0.2, transparent: true, depthWrite:false, color: "gray"});
+    guideHeight = new THREE.Mesh(myGeo, myMaterial);
+    scene.add(guideHeight);
+    guideHeight.position.set(0,0,0);
+
     // Note that it is not considered as physcial object.
 }
 function createGuideSph() {
@@ -256,15 +260,3 @@ function loadConfig(mode) {
         return waiter;
     });
 }
-function detectMobileDevice(agent) {
-    let mobileRegex = [
-        /Android/i,
-        /iPhone/i,
-        /iPad/i,
-        /iPod/i,
-        /BlackBerry/i,
-        /Window Phone/i
-    ];
-    return mobileRegex.some(reg => agent.match(reg));
-}
-//# sourceMappingURL=script.js.map
