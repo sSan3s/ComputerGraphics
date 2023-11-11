@@ -191,11 +191,6 @@ export function onKeydown(event) {
 
             }
             break;
-        case 'C':
-            var date = new Date();
-            date.setMinutes(date.getMinutes()+60);
-            document.cookie = `score=${gameScore}; expires=${date.toUTCString()}`;            
-            break;
         default:
             break;
     }
