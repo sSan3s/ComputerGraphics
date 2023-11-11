@@ -246,14 +246,14 @@ export function addGameScore(num) {
 
 const iconContainer = document.querySelector('.upNextIcon');
 var icon = document.createElement("img");
-icon.width = 100;
-icon.height = 100;
+icon.width = 140;
+icon.height = 140;
 iconContainer.appendChild(icon);
 
 const slotIconContainer = document.querySelector('.slotIcon');
 var slotIcon = document.createElement("img");
-slotIcon.width = 100;
-slotIcon.height = 100;
+slotIcon.width = 80;
+slotIcon.height = 80;
 slotIconContainer.appendChild(slotIcon);
 
 export function upNextIconDisplayer(fruitName, icon) {
