@@ -64,7 +64,11 @@ function init() {
     container.appendChild(renderer.domElement);
     // Add input listeners
     var high = document.cookie.split(`; `).map((el) => el.split('='));
+
     UI.highscore.innerText = high[0][1]
+    if(UI.highscore.innerText=="undefined"){
+        UI.highscore.innerText = 0;
+    }
     document.addEventListener('mousemove', UI.onDocumentMouseMove);
     document.addEventListener('mouseup', UI.onDocumentMouseUp);
     document.addEventListener('mousedown', UI.onDocumentClick);

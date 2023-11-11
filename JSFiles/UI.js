@@ -175,6 +175,11 @@ export function onKeydown(event) {
         case 'B': // Bottom View
             targetTheta = 0.5 * Math.PI;
             break;
+        case 'R': // Bottom View
+            targetPhi = 0.25 * Math.PI + 0.001
+            targetTheta = 0.25 * Math.PI
+            targetRadi = 900 * 1.5;
+            break;
         case 'Z':
             if(slot==-1){
                 slot = currentRank;
