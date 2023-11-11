@@ -4,7 +4,7 @@ import { addGameScore } from "./UI.js";
 
 
 
-let gravity = 0.98; // 게임이 진행되는 공간(box), 중력이 적용되는 범위 및 중력계수 초기화
+let gravity = 0.49; // 게임이 진행되는 공간(box), 중력이 적용되는 범위 및 중력계수 초기화
 const zAxis = new THREE.Vector3(0, 0, 1);
 const yAxis = new THREE.Vector3(0, 1, 0);
 const xAxis = new THREE.Vector3(1, 0, 0);
@@ -12,6 +12,7 @@ export let G = new THREE.Vector3(0, 0, -gravity); //중력
 export let sphs = []; // 생성한 과일 저장
 export let side = 100;
 export let height = 300;
+export let topZ;
 let halfHeight = height * 0.5;
 // 벽, 바닥, 과일끼리의 충돌과 탄성, 반발력, 마찰계수
 let floorElasticity = 0.5;

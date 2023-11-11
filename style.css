@@ -5,6 +5,7 @@
 }
 html, body {
   overflow: hidden;
+  background-color: rgb(255, 107, 38);
 }
 body {
   position: relative;
@@ -18,7 +19,7 @@ a:visited {
   text-decoration: none;
 }
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 107, 38);
 }
 td {
   border: 1px solid gray;
@@ -75,7 +76,7 @@ td {
   flex: 49%;
   border: 1px solid orange;
   text-align: center;
-  background-color: rgb(255, 178, 149);
+  background-color: white;
   min-width: 0;
   min-height: 0;
 }
