@@ -182,7 +182,7 @@ export class Physical {
         let objB = x.mesh.position.clone();
         if (this.radius + x.radius > (objA.add(this.vel)).distanceTo(objB.add(x.vel)) &&
             !this.isReservedToDestroyed && !x.isReservedToDestroyed) {
-            if (this.radius === x.radius) { // 충돌한 두 과일이 같은 크기라면 합침
+            if (this.radius === x.radius && this.rank<7) { // 충돌한 두 과일이 같은 크기라면 합침
                 this.sphereFusion(x);
                 return;
             }
@@ -229,6 +229,7 @@ export class Physical {
         this.spin.addVectors(this.spin, sph.spin).multiplyScalar(0.5);
         this.isCollide = true;
         rankUpSph(this);
+        
         this.isEverCollide = true;
         addGameScore(this.rank ** 2);
         killSph(sph);

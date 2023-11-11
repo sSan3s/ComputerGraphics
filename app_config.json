@@ -36,7 +36,7 @@
         "mass": 1,
         "texture": "orange",
         "color": "orange",
-        "name": "mandarin"
+        "name": "orange"
       },
       { 
         "radius": 38,
@@ -65,27 +65,6 @@
         "texture": "peach",
         "color": "pink",
         "name": "peach"
-      },
-      {
-        "radius": 66,
-        "mass": 1,
-        "texture": "ananas",
-        "color": "yellow",
-        "name": "ananas or pineapple"
-      },
-      {
-        "radius": 73,
-        "mass": 1,
-        "texture": "melon",
-        "color": "chartreuse",
-        "name": "melon"
-      },
-      { 
-        "radius": 80,
-        "mass": 1,
-        "texture": "suika",
-        "color": "darkgreen",
-        "name": "suika"
       }
     ]
 }

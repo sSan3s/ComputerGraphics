@@ -109,7 +109,8 @@ export function createColorSph(rank, position, rotation) {
 }
 export function rankUpSph(sph) {
     let newRank = sph.rank + 1;
-    if (newRank > 10) {
+
+    if (newRank > 7) {
         killSph(sph);
         return;
     }
