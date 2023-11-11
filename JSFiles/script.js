@@ -35,7 +35,7 @@ function init() {
     var _a;
     let container = UI.container;
     // camera = new THREE.OrthographicCamera();
-    camera = new THREE.PerspectiveCamera(18, UI.w_width / UI.w_height, 1, 10000);
+    camera = new THREE.PerspectiveCamera(22, UI.w_width / UI.w_height, 1, 10000);
     UI.smoothCameraSet(UI.currentPhi, UI.currentTheta, UI.currentRadi);
     camera.rotation
     // Initialize three.js scene.

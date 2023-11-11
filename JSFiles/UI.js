@@ -272,9 +272,9 @@ export function upNextIconDisplayer(fruitName, icon) {
             icon.src = './assets/grapes.png';
             console.log("nextFruit: grape");
             break;
-        case 'mandarin':
+        case 'orange':
             icon.src = './assets/clementine.png';
-            console.log("nextFruit: mandarin");
+            console.log("nextFruit: orange");
             break;
         case 'persimmon':
             icon.src = './assets/persimmon.png';
