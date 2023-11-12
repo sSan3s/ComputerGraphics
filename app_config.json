@@ -13,58 +13,58 @@
       {
         "radius": 10,
         "mass": 1,
-        "texture": "cherry",
-        "color": "crimson",
-        "name": "cherry"
+        "texture": "blueberry",
+        "color": "#9370DB",
+        "name": "blueberry"
       },
       {
         "radius": 17,
         "mass": 1,
         "texture": "strawberry",
-        "color": "salmon",
+        "color": "#FF6347",
         "name": "strawberry"
       },
       { 
         "radius": 24,
         "mass": 1,
-        "texture": "grape",
-        "color": "slateblue",
-        "name": "grape"
+        "texture": "lemon",
+        "color": "#FFD700",
+        "name": "lemon"
       },
       { 
         "radius": 31,
         "mass": 1,
-        "texture": "orange",
-        "color": "orange",
-        "name": "orange"
+        "texture": "apple",
+        "color": "#EE2C2C",
+        "name": "apple"
       },
       { 
         "radius": 38,
         "mass": 1,
-        "texture": "persimmon",
-        "color": "orangered",
-        "name": "persimmon"
+        "texture": "peach",
+        "color": "#FF82AB",
+        "name": "peach"
       },
       { 
         "radius": 45,
         "mass": 1,
-        "texture": "apple",
-        "color": "red",
-        "name": "apple"
+        "texture": "orange",
+        "color": "#FF8C00",
+        "name": "orange"
       },
       {
         "radius": 52,
         "mass": 1,
-        "texture": "pear",
-        "color": "palegoldenrod",
-        "name": "pear"
+        "texture": "melon",
+        "color": "#7CCD7C",
+        "name": "melon"
       },
       { 
         "radius": 59,
         "mass": 1,
-        "texture": "peach",
-        "color": "pink",
-        "name": "peach"
+        "texture": "suika",
+        "color": "#008B00",
+        "name": "suika"
       }
     ]
 }
