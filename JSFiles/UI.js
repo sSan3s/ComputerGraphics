@@ -133,12 +133,16 @@ export function onDocumentClick(event) {
         clickY = side - margin;
     createColorSph(currentRank, [clickX, clickY, 0.5 * height + dropMargin], [Math.random() * 2 * Math.PI, Math.random() * 2 * Math.PI, 0]); // This might not be random.
     currentRank = nextRank;
-    nextRank = MathUtils.randInt(0, 5);
+    nextRank = MathUtils.randInt(0, 3);
     // // renew guide sphere.
     renewGuideSphere();
     var date = new Date();
     date.setMinutes(date.getMinutes()+60);
-    document.cookie = `score=${gameScore}; expires=${date.toUTCString()}`;            
+    var high = document.cookie.split(`; `).map((el) => el.split('='));
+
+    if(high[0][1]<gameScore||highscore.innerText=="0"){
+        document.cookie = `score=${gameScore}; expires=${date.toUTCString()}`;            
+    }
 }
 export function onDocumentMouseUp(event) {
     console.log("up");
