@@ -260,29 +260,29 @@ export function upNextIconDisplayer(fruitName, icon) {
 
     console.log("fruitname:", fruitName);
     switch(fruitName) {
-        case 'cherry':
-            icon.src = './assets/cherry.png';
-            console.log("nextFruit: cherry");
+        case 'blueberry':
+            icon.src = './assets/blueberry.png';
+            console.log("nextFruit: blueberry");
             break;
         case 'strawberry':
             icon.src = './assets/strawberry.png';
             console.log("nextFruit: strawberry");
             break;
-        case 'grape':
-            icon.src = './assets/grapes.png';
-            console.log("nextFruit: grape");
-            break;
-        case 'orange':
-            icon.src = './assets/clementine.png';
-            console.log("nextFruit: orange");
-            break;
-        case 'persimmon':
-            icon.src = './assets/persimmon.png';
-            console.log("nextFruit: persimmon");
+        case 'lemon':
+            icon.src = './assets/lemon.png';
+            console.log("nextFruit: lemon");
             break;
         case 'apple':
             icon.src = './assets/red-apple.png';
             console.log("nextFruit: apple");
+            break;
+        case 'peach':
+            icon.src = './assets/peach.png';
+            console.log("nextFruit: peach");
+            break;
+        case 'orange':
+            icon.src = './assets/orange.png';
+            console.log("nextFruit: orange");
             break;
     }
     
