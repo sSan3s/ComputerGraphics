@@ -37,6 +37,19 @@ td {
   text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.26);
   z-index: 0;
 }
+#teamName {
+  position:absolute;
+  font-size: 3vw;
+  left: 8.5vw;
+  top: 3vw;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: white;
+  font-family: 'Barlow';
+
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.26);
+  z-index: 0;
+}
 #outer {
   display: flex;
   flex-direction: column;
@@ -77,7 +90,8 @@ td {
   border-bottom-left-radius: 100px;
   padding-top: 2vw;
   padding-bottom: 2vw;
-  background-color: rgb(216, 255, 176);
+  background-color: rgb(237, 255, 224);
+  z-index: 1;
 }
 #slotImgDiv {
   width: 100px;
@@ -111,6 +125,7 @@ td {
   min-height: 0;
   border-top-left-radius: 30px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.26);
+  z-index: 1;
 }
 #subPanel {
   flex: 1;
@@ -139,15 +154,22 @@ td {
 #upNextDiv {
   flex: 2;
   margin-left: 0.5vw;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 40px;
   border-top-right-radius: 160px;
-  background-color: rgba(255, 237, 237, 0.922);
+  background-color: rgba(255, 241, 241, 0.922);
+  z-index: 1;
+}
+#upNextIcon {
+  margin-top: 0px;
+  padding: 0px;
 }
 #upNext {
   font-size: large;
   font-size: 3vw;
   margin: auto;
+  margin-top: 0px;
+  margin-bottom: 100px;
   font-weight: bold;
   font-family: 'Barlow';
 }
@@ -158,17 +180,22 @@ td {
   margin-left: 0.5vw;
   margin-top: 0.5vw;
   padding-top: 2vw;
+  padding-bottom: 2vw;
   border-bottom-left-radius: 100px;
   background-color: white;
+  z-index: 1;
 }
 .instruction {
   font-size: 120%;
   font-family: 'Barlow';
+  margin-top: 0px;
+  margin-bottom: 35px;
 }
 #scoreBoard {
-  font-size: 200%;
+  font-size: 5vw;
   font-weight: bold;
   font-family: 'Barlow';
+  margin: 0px;
 }
 #info {
   flex: 10%;
@@ -187,13 +214,23 @@ td {
   font-weight: bold;
   font-family: 'Barlow';
 }
+#titleWhite {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'Barlow';
+  color: white;
+}
 #highScoreTitle {
   font-size: 20px;
   font-weight: bold;
   font-family: 'Barlow';
   color: rgb(255, 107, 38);
+  margin-top: 50px;
 }
 #highScore {
-  font-size: 20px;
+  font-size: 2vw;
   font-family: 'Barlow';
+  margin-bottom: 100px;
+  margin-top: 0px;
+  color: rgb(255, 107, 38);
 }
