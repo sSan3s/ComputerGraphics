@@ -134,12 +134,12 @@ export function killSph(sph) {
 }
 function createBorder(side, height, scene) {
     let thickness = 0.5;
-    let opacity = 0.25;
+    let opacity = 0.2;
     let myGeo = new THREE.BoxGeometry(2 * (side + thickness), 2 * (side + thickness), thickness, 1, 1, 1);
     let material = new THREE.MeshBasicMaterial({
         opacity: opacity,
         transparent: true,
-        color: new THREE.Color("teal"),
+        color: new THREE.Color("steelblue"),
     });
     let mesh = new THREE.Mesh(myGeo, material);
     mesh.position.set(0, 0, (-0.5 * (thickness + height)));
@@ -163,7 +163,7 @@ function createBorder(side, height, scene) {
             opacity: opacity,
             transparent: true,
             depthWrite: false,
-            color: new THREE.Color("orange")
+            color: new THREE.Color("lightblue")
         });
         let mesh1 = new THREE.Mesh(myGeo1, material1);
         mesh1.rotateOnWorldAxis(rotaionArray[i], 0.5 * Math.PI);
@@ -183,7 +183,7 @@ function createGuide() {
 }
 function createGuideHeight() {
     let myGeo = new THREE.PlaneGeometry(PHYS.side*2,PHYS.side*2)
-    let myMaterial = new THREE.MeshBasicMaterial({ opacity: 0.2, transparent: true, depthWrite:false, color: "gray"});
+    let myMaterial = new THREE.MeshBasicMaterial({ opacity: 0.2, depthWrite:false, color: "gray", wireframe: true, wireframeLinewidth: 10});
     guideHeight = new THREE.Mesh(myGeo, myMaterial);
     scene.add(guideHeight);
     guideHeight.position.set(0,0,0);
