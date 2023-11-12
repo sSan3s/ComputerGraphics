@@ -2,8 +2,6 @@ import * as THREE from "three";
 import { gameOver, rankUpSph, killSph, guideHeight,gameStatus } from "./script.js";
 import { addGameScore } from "./UI.js";
 
-
-
 let gravity = 0.49; // 게임이 진행되는 공간(box), 중력이 적용되는 범위 및 중력계수 초기화
 const zAxis = new THREE.Vector3(0, 0, 1);
 const yAxis = new THREE.Vector3(0, 1, 0);
@@ -274,8 +272,6 @@ export function physics(elements) {
             if (elements[i].isReservedToDestroyed) {
                 elements = elements.splice(i, 1);
             }
-            
-           
         }
         catch (e) {
             break;
