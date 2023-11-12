@@ -245,7 +245,7 @@ export function gameOver() {
     document.removeEventListener('click', UI.onDocumentClick);
     scene.remove(guideLine);
     scene.remove(guideSphere);
-    alert("game over.");
+    alert("Game over.");
     location.reload();
 }
 // loading config json.
