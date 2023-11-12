@@ -24,6 +24,9 @@ body {
 td {
   border: 1px solid gray;
 }
+#gameTitle {
+  position:absolute;
+}
 #outer {
   display: flex;
   flex-direction: column;
@@ -31,11 +34,13 @@ td {
   height: 90vh;
   margin:auto;
   margin-top: 2vw;
+  padding-bottom: 10px;
 }
 #bodyContainer {
   flex-direction: row;
   display: flex;
   flex: 90%;
+  height: 95%;
   min-width: 0;
   min-height: 0;
 }
@@ -62,6 +67,7 @@ td {
   border-bottom-left-radius: 100px;
   padding-top: 2vw;
   padding-bottom: 2vw;
+  background-color: rgba(209, 255, 201, 0.851);
 }
 #slotImgDiv {
   width: 100px;
@@ -84,13 +90,16 @@ td {
   flex: 2;
   margin-bottom: 0.5vw;
   padding: 15px;
+  padding-top: 0px;
   border-top-left-radius: 20px;
+  background-color: white;
 }
 #container {
   flex: 2;
   min-width: 0;
   min-height: 0;
   border-top-left-radius: 30px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.26);
 }
 #subPanel {
   flex: 1;
@@ -112,16 +121,17 @@ td {
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: white;
   min-width: 0;
   min-height: 0;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.26);
 }
 #upNextDiv {
   flex: 2;
   margin-left: 0.5vw;
   padding-top: 30px;
   padding-bottom: 30px;
-  border-top-right-radius: 120px;
+  border-top-right-radius: 160px;
+  background-color: white;
 }
 #upNext {
   font-size: large;
@@ -138,6 +148,7 @@ td {
   margin-top: 0.5vw;
   padding-top: 2vw;
   border-bottom-left-radius: 100px;
+  background-color: white;
 }
 .instruction {
   font-size: 120%;
@@ -146,6 +157,7 @@ td {
 #scoreBoard {
   font-size: 200%;
   font-weight: bold;
+  font-family: 'Barlow';
 }
 #info {
   flex: 10%;
@@ -169,4 +181,8 @@ td {
   font-weight: bold;
   font-family: 'Barlow';
   color: rgb(255, 107, 38);
+}
+#highScore {
+  font-size: 20px;
+  font-family: 'Barlow';
 }
