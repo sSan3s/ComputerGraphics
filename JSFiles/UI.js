@@ -256,35 +256,10 @@ slotIcon.width = 80;
 slotIcon.height = 80;
 slotIconContainer.appendChild(slotIcon);
 
-export function upNextIconDisplayer(fruitName, icon) {
+export function IconDisplayer(fruitName, icon) {
 
     console.log("fruitname:", fruitName);
-    switch(fruitName) {
-        case 'blueberry':
-            icon.src = './assets/blueberry.png';
-            console.log("nextFruit: blueberry");
-            break;
-        case 'strawberry':
-            icon.src = './assets/strawberry.png';
-            console.log("nextFruit: strawberry");
-            break;
-        case 'lemon':
-            icon.src = './assets/lemon.png';
-            console.log("nextFruit: lemon");
-            break;
-        case 'apple':
-            icon.src = './assets/red-apple.png';
-            console.log("nextFruit: apple");
-            break;
-        case 'peach':
-            icon.src = './assets/peach.png';
-            console.log("nextFruit: peach");
-            break;
-        case 'orange':
-            icon.src = './assets/orange.png';
-            console.log("nextFruit: orange");
-            break;
-    }
+    icon.src = `./assets/${fruitName}.png`;
     
 }
 
@@ -296,8 +271,8 @@ export function display() {
     upNextPanel.style.color = "#" + new Color(config[nextRank].color).getHexString();
     // upNextPanel.style.fontSize = config[nextRank].radius.toString()+"px";
     scoreBoard.innerText = gameScore.toString();
-    upNextIconDisplayer(config[nextRank].name.toString(), icon);
-    upNextIconDisplayer(config[slot].name.toString(), slotIcon);
+    IconDisplayer(config[nextRank].name.toString(), icon);
+    IconDisplayer(config[slot].name.toString(), slotIcon);
 }
 /**
  *
