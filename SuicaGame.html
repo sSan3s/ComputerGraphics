@@ -6,25 +6,29 @@
   <title>🍉Suika 3D</title>
   <link rel="stylesheet" href="./style.css">
   <script src="https://kit.fontawesome.com/981d23b18c.js" crossorigin="anonymous"></script>
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body oncontextmenu="return false;">
   <div id="outer">
     <div id="bodyContainer">
       <div id="leftPanel">
         <div id="infoDiv">
-          <h4>-INSTRUCTION-</h4>
-          <p class="instruction">W, A, S, D : rotate view <br>
+          <h4 class="title">INSTRUCTION</h4>
+          <p class="instruction">W, A, S, D : <br>
+            rotate view <br><br>
             Q, E : <br>
-            zoom in / out <br>
+            zoom in / out <br><br>
             T, B : <br>
-            Top View / Bottom View <br>
+            Top View / Bottom View <br><br>
             Z : <br>
-            Slot Change <br>
-            🍒➡🍓➡🍇➡🍊➡🍅➡<br>
-          🍎➡🍐➡🍑➡🍍➡🍈➡🍉</p>
+            Slot Change <br><br>
+            🫐>🍓>🍋>🍑><br>
+            🍎>🍊>🍈>🍉</p>
         </div>
         <div id="slotDiv">
+          <p class="title">-SLOT-</p>
           <div id="slotImgDiv">
             <div class="slotIcon"></div>
           </div>
@@ -35,15 +39,15 @@
       <div id="container"></div>
       <div id="subPanel">
         <div id="upNextDiv">
-          <p>-NEXT-</p>
+          <p class="title">-NEXT-</p>
           <div class="upNextIcon"></div>
           <p id="upNext"> Comming up next!</p>
         
         </div>
         <div id="scoreDiv">
-          <h3>-SCORE-</h3>
+          <h3 class="title">-SCORE-</h3>
           <p id="scoreBoard">0</p>
-          <h5>High Score</h5>
+          <h5 id="highScoreTitle">High Score</h5>
           <p id="highScore">0</p>
         </div>
       </div>
