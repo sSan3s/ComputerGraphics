@@ -140,7 +140,7 @@ export function onDocumentClick(event) {
     date.setMinutes(date.getMinutes()+60);
     var high = document.cookie.split(`; `).map((el) => el.split('='));
 
-    if(high[0][1]<gameScore){
+    if(high[0][1]<gameScore||highscore.innerText=="0"){
         document.cookie = `score=${gameScore}; expires=${date.toUTCString()}`;            
     }
 }
