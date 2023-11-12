@@ -18,28 +18,28 @@
         "name": "blueberry"
       },
       {
-        "radius": 17,
+        "radius": 15,
         "mass": 1,
         "texture": "strawberry",
         "color": "#FF6347",
         "name": "strawberry"
       },
       { 
-        "radius": 24,
+        "radius": 20,
         "mass": 1,
         "texture": "lemon",
-        "color": "#FFD700",
+        "color": "#fcc203",
         "name": "lemon"
       },
       { 
-        "radius": 31,
+        "radius": 30,
         "mass": 1,
         "texture": "apple",
         "color": "#EE2C2C",
         "name": "apple"
       },
       { 
-        "radius": 38,
+        "radius": 35,
         "mass": 1,
         "texture": "peach",
         "color": "#FF82AB",
@@ -53,14 +53,14 @@
         "name": "orange"
       },
       {
-        "radius": 52,
+        "radius": 55,
         "mass": 1,
         "texture": "melon",
         "color": "#7CCD7C",
         "name": "melon"
       },
       { 
-        "radius": 59,
+        "radius": 70,
         "mass": 1,
         "texture": "suika",
         "color": "#008B00",
